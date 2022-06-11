@@ -11,19 +11,25 @@ header nav {
 }
 
 main {
-    margin-bottom: 6rem;
+    /*margin-bottom: 6rem;*/
+    display: flex;
+    flex-direction: column;
+    min-height: 78vh;
 }
 
 footer {
     font-size: 1.6rem;
-    position: fixed;
-    z-index: 1;
+    /*position: fixed;*/
+    /*z-index: 1;*/
     background-color: white;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding-top: 1rem;
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*padding-top: 1rem;*/
     border-top: 1px dashed black;
+
+    flex: 0 0 50px;/*or just height:50px;*/
+    margin-top: auto;
 }
 
 .form {
@@ -53,4 +59,40 @@ footer {
 .collection img {
     height: 20rem;
     width: 20rem;
+}
+
+.album {
+    align-items: center;
+    padding-top: 3cm;
+    padding-bottom: 3cm;
+}
+
+.album-picture-container-A4 {
+    width: 21cm;
+    height: 14.85cm;
+    margin-right: 4.5cm;
+    margin-left: 4.5cm;
+    padding: 2.2em;
+    background: url('./images/film2.png');
+    /*background-color: rgba(162, 189, 198, 0.73);*/
+}
+
+.album-picture-container-A4 .frame {
+    height: 30em;
+    width: 40em;
+    border: 3px solid #eee;
+    background: #eee;
+    margin: auto;
+    padding: 15px 10px;
+}
+
+.album-picture-container-A4 .frame img {
+    width: 100%;
+    height: 100%;
+}
+
+.print-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
 }

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta charset="UTF-8">
+		<title>Register page</title>
+		<!--	Bootstrap, JQuery import and scalable website config-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+		<!--	google fonts-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
+		<!--	website styles-->
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="nav navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link active" href="./login.html">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./register.html">Register</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./create-collection.html">Create collection</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./add-photo.html">Add photo</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<h1>Register to PhotoGallery</h1>
+		</header>
+
+		<main class="container-fluid">
+			<form class="form needs-validation" method="post" novalidate>
+				<div class="form-group col-md-2 mb-3">
+					<label for="username" class="form-label">Username:</label>
+					<input type="text" class="form-control" id="username" placeholder="Enter username" required>
+					<div class="invalid-feedback">
+						Please enter your username.
+					</div>
+				</div>
+				<div class="form-group col-md-2 mb-3">
+					<label for="email" class="form-label">Email:</label>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" required>
+					<div class="invalid-feedback">
+						Please enter your email address.
+					</div>
+				</div>
+				<div class="form-group col-md-2 mb-3">
+					<label for="password" class="form-label">Password:</label>
+					<input type="password" class="form-control" id="password" placeholder="Enter password" required>
+					<div class="invalid-feedback">
+						Please enter your password.
+					</div>
+				</div>
+				<div class="form-group col-md-2 mb-3">
+					<label for="confirm-password" class="form-label">Confirm password:</label>
+					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" required>
+					<div class="invalid-feedback">
+						Please confirm your password.
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary col-md-1" id="submit-button">Register</button>
+			</form>
+		</main>
+
+		<footer>
+			<p>
+				All rights reserved &reg; - Ivana and Vesela
+			<div id="currentDate"></div>
+			<script>
+		        let date = new Date();
+		        let month = date.getMonth()+1;
+		        let day = date.getDate();
+		        let year = date.getFullYear();
+
+		        document.getElementById("currentDate").innerText = day + '/' + month + '/' + year;
+			</script>
+			</p>
+		</footer>
+
+		<script>
+		    $('#submit-button').on('click', function (e) {
+		        e.preventDefault();
+
+		        if ($('#username').val() === '') {
+		            $('#username + .invalid-feedback').show();
+		        }
+
+                if ($('#email').val() === '') {
+                    $('#email + .invalid-feedback').show();
+                }
+
+                if ($('#confirm-password').val() === '') {
+                    $('#confirm-password + .invalid-feedback').show();
+                }
+
+		        if ($('#password').val() === '') {
+		            $('#password + .invalid-feedback').show();
+		        }
+		    });
+
+		    $('#username').on('click', function () {
+		        $('#username + .invalid-feedback').hide();
+		    });
+
+            $('#email').on('click', function () {
+                $('#email + .invalid-feedback').hide();
+            });
+
+            $('#confirm-password').on('click', function () {
+                $('#confirm-password + .invalid-feedback').hide();
+            });
+
+		    $('#password').on('click', function () {
+		        $('#password + .invalid-feedback').hide();
+		    });
+		</script>
+	</body>
+</html>

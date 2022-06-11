@@ -1,0 +1,56 @@
+* {
+    font-family: 'Joan', serif;
+}
+
+header, footer {
+    text-align: center;
+}
+
+header nav {
+    margin-bottom: 3rem;
+}
+
+main {
+    margin-bottom: 6rem;
+}
+
+footer {
+    font-size: 1.6rem;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px dashed black;
+}
+
+.form {
+    margin: 6rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form .invalid-feedback {
+    margin-top: 0.5rem;
+    color: red;
+}
+
+.collections {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.collections .collection {
+    margin: 2rem 2rem;
+    flex: 0 0 20%;
+}
+
+.collection img {
+    height: 20rem;
+    width: 20rem;
+}

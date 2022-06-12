@@ -2,7 +2,8 @@
 
 session_start();
 
-require_once Session::class;
+require_once '../models/';
+require_once '../exceptions/';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {

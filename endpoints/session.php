@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once '../models/';
-require_once '../exceptions/';
+require_once '../models/Bootstrap.php';
+Bootstrap::initApp();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {

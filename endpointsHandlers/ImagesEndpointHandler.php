@@ -1,6 +1,8 @@
 <?php
 
-class ImagesEndpointHandler
-{
+class ImagesEndpointHandler {
 
+    public static function getImagesByCollectionId($selectedCollectionId) {
+
+    }
 }

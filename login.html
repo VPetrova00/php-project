@@ -25,23 +25,35 @@
 		    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			    <div class="container-fluid">
 				    <div class="collapse navbar-collapse" id="navbarNav">
-					    <ul class="nav navbar-nav">
-						    <li class="nav-item">
-							    <a class="nav-link active" href="./login.html">Login</a>
-						    </li>
-						    <li class="nav-item">
-							    <a class="nav-link" href="./register.html">Register</a>
-						    </li>
-						    <li class="nav-item">
-							    <a class="nav-link" href="./index.html">Home</a>
-						    </li>
-						    <li class="nav-item">
-							    <a class="nav-link" href="./create-collection.html">Create collection</a>
-						    </li>
-						    <li class="nav-item">
-							    <a class="nav-link" href="./add-photo.html">Add photo</a>
-						    </li>
-					    </ul>
+					    <div id="not-logged-buttons">
+						    <ul class="nav navbar-nav">
+							    <li class="nav-item">
+								    <a class="nav-link active" href="./login.html">Login</a>
+							    </li>
+							    <li class="nav-item">
+								    <a class="nav-link" href="./register.html">Register</a>
+							    </li>
+						    </ul>
+					    </div>
+					    <div id="logged-buttons">
+						    <ul class="nav navbar-nav">
+							    <li class="nav-item">
+								    <a class="nav-link hello-a"><span>Hello,<span id="hello-user"></span></span></a>
+							    </li>
+							    <li class="nav-item">
+								    <a class="nav-link" href="./index.html">Home</a>
+							    </li>
+							    <li class="nav-item">
+								    <a class="nav-link" href="./create-collection.html">Create collection</a>
+							    </li>
+							    <li class="nav-item">
+								    <a class="nav-link" href="./add-photo.html">Add photo</a>
+							    </li>
+							    <li class="nav-item">
+								    <a class="nav-link" href="./login.html" onclick="logout()">Logout</a>
+							    </li>
+						    </ul>
+					    </div>
 				    </div>
 			    </div>
 		    </nav>
@@ -64,7 +76,7 @@
 						Please enter your password.
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="submit-button" onclick="submitForm()">Login</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="submit-button" onclick="loginMethods.submitForm()">Login</button>
 			</form>
 	    </main>
 

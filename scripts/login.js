@@ -9,6 +9,10 @@ const loginMethods = {
         });
     },
     submitForm: () => {
+        if (document.getElementById("username").value === '' || document.getElementById("password").value === '') {
+            return;
+        }
+
         const body = {
             'username': document.getElementById("username").value,
             'password': document.getElementById("password").value

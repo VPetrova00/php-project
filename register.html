@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
+		<script src="./scripts/registration.js"></script>
 		<!--		JS files imports-->
 		<script src="./scripts/login.js"></script>
 	</head>
@@ -60,7 +61,7 @@
 		</header>
 
 		<main class="container-fluid">
-			<form class="form needs-validation" method="post" novalidate>
+			<form id="registration-form" class="form needs-validation" method="post" novalidate>
 				<div class="form-group col-md-2 mb-3">
 					<label for="username" class="form-label">Username:</label>
 					<input type="text" class="form-control" id="username" placeholder="Enter username" required>
@@ -89,7 +90,7 @@
 						Please confirm your password.
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="submit-button">Register</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)">Register</button>
 			</form>
 		</main>
 

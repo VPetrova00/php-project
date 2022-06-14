@@ -52,8 +52,14 @@ footer {
 }
 
 .collections .collection {
+    padding: 1rem 1rem;
     margin: 2rem 2rem;
     flex: 0 0 20%;
+    border-radius: 2%;
+}
+
+.collections .collection:first-child:hover {
+    background-color: darkgray;
 }
 
 .collection img {

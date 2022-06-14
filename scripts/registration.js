@@ -1,5 +1,3 @@
-
-
 const checkRegistrationStatus = () => {
     return fetch('./endpoints/session.php').then(response => {
         if (response.ok) {

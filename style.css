@@ -11,10 +11,13 @@ header nav {
 }
 
 main {
-    margin-bottom: 6rem;
     display: flex;
     flex-direction: column;
     /*min-height: 78vh;*/
+}
+
+main:not(.album) {
+    margin-bottom: 6rem;
 }
 
 footer {
@@ -70,7 +73,7 @@ footer {
 .album {
     align-items: center;
     padding-top: 3cm;
-    padding-bottom: 3cm;
+    /*padding-bottom: 3cm;*/
 }
 
 .album-picture-container-A4 {
@@ -100,5 +103,5 @@ footer {
 .print-btn {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 }

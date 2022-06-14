@@ -3,18 +3,18 @@
 require_once '../models/Bootstrap.php';
 Bootstrap::initApp();
 
-Session::verifyUserIsLoggedIn();
+//Session::verifyUserIsLoggedIn();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
-        $selectedCollectionId = $_GET['id'] ?? null;
+        $selectedCollectionId = isset($_GET['id']) ? $_GET['id'] : null; //undefined index -> returns null
         $response = null;
 
         if ($selectedCollectionId) {
             $response = ImagesEndpointHandler::getImagesByCollectionId($selectedCollectionId);
-            echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
 
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
         break;
     }
     case 'POST': {

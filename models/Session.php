@@ -19,8 +19,8 @@ class Session
     }
 
     public static function logUser(string $username, string $password): bool {
-        $_SESSION['user_id'] = self::$session_id;
-        self::$session_id++;
+        $_SESSION['user_id'] = 5;
+//        self::$session_id++;
 
         $_SESSION['username'] = $username;
 

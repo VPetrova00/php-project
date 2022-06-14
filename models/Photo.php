@@ -12,13 +12,16 @@ class Photo implements JsonSerializable
 
     private $path;
 
+    private $collection_id;
 
-    public function __construct(int $id, string $date, int $width, int $height, string $path) {
+
+    public function __construct(int $id, string $date, int $width, int $height, string $path, int $collection_id) {
         $this->id = $id;
         $this->date = $date;
         $this->width = $width;
         $this->height = $height;
         $this->path = $path;
+        $this->collection_id = $collection_id;
     }
 
     public function getId(): int {
@@ -40,12 +43,19 @@ class Photo implements JsonSerializable
         return $this->path;
     }
 
+    /**
+     * @return int
+     */
+    public function getCollectionId(): int
+    {
+        return $this->collection_id;
+    }
 
     public function jsonSerialize(): array {
         return get_object_vars($this);
     }
 
-    public static function createFromAssoc(array $assocPhoto): Course {
-        return new Photo($assocPhoto['id'], $assocPhoto['date'], $assocPhoto['width'], $assocPhoto['height'], $assocPhoto['path']);
+    public static function createFromAssoc(array $assocPhoto): Photo {
+        return new Photo($assocPhoto['id'], $assocPhoto['date'], $assocPhoto['width'], $assocPhoto['height'], $assocPhoto['path'], $assocPhoto['collection_id']);
     }
 }

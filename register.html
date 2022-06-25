@@ -6,7 +6,6 @@
 		<!--	Bootstrap, JQuery import and scalable website config-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -64,21 +63,21 @@
 			<form id="registration-form" class="form needs-validation" method="post" novalidate>
 				<div class="form-group col-md-2 mb-3">
 					<label for="username" class="form-label">Username:</label>
-					<input type="text" class="form-control" id="username" placeholder="Enter username" required>
+					<input type="text" class="form-control" id="username" placeholder="Enter username" required name="username">
 					<div class="invalid-feedback">
 						Please enter your username.
 					</div>
 				</div>
 				<div class="form-group col-md-2 mb-3">
 					<label for="email" class="form-label">Email:</label>
-					<input type="email" class="form-control" id="email" placeholder="Enter email" required>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" required name="email">
 					<div class="invalid-feedback">
 						Please enter your email address.
 					</div>
 				</div>
 				<div class="form-group col-md-2 mb-3">
 					<label for="password" class="form-label">Password:</label>
-					<input type="password" class="form-control" id="password" placeholder="Enter password" required>
+					<input type="password" class="form-control" id="password" placeholder="Enter password" required name="password">
 					<div class="invalid-feedback">
 						Please enter your password.
 					</div>
@@ -90,7 +89,7 @@
 						Please confirm your password.
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)">Register</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)" name="submit">Register</button>
 			</form>
 		</main>
 
@@ -108,43 +107,5 @@
 			</script>
 			</p>
 		</footer>
-
-		<script>
-		    $('#submit-button').on('click', function (e) {
-		        e.preventDefault();
-
-		        if ($('#username').val() === '') {
-		            $('#username + .invalid-feedback').show();
-		        }
-
-                if ($('#email').val() === '') {
-                    $('#email + .invalid-feedback').show();
-                }
-
-                if ($('#confirm-password').val() === '') {
-                    $('#confirm-password + .invalid-feedback').show();
-                }
-
-		        if ($('#password').val() === '') {
-		            $('#password + .invalid-feedback').show();
-		        }
-		    });
-
-		    $('#username').on('click', function () {
-		        $('#username + .invalid-feedback').hide();
-		    });
-
-            $('#email').on('click', function () {
-                $('#email + .invalid-feedback').hide();
-            });
-
-            $('#confirm-password').on('click', function () {
-                $('#confirm-password + .invalid-feedback').hide();
-            });
-
-		    $('#password').on('click', function () {
-		        $('#password + .invalid-feedback').hide();
-		    });
-		</script>
 	</body>
 </html>

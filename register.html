@@ -3,12 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Register page</title>
-		<!--	Bootstrap, JQuery import and scalable website config-->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-		<!--	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 		<!--	google fonts-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,38 +15,36 @@
 	</head>
 	<body>
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<div class="container-fluid">
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<div id="not-logged-buttons">
-							<ul class="nav navbar-nav">
-								<li class="nav-item">
-									<a class="nav-link active" href="./login.html">Login</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="./register.html">Register</a>
-								</li>
-							</ul>
-						</div>
-						<div id="logged-buttons">
-							<ul class="nav navbar-nav">
-								<li class="nav-item">
-									<a class="nav-link hello-a"><span>Hello, <span id="hello-user"></span></span></a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="./index.html">Home</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="./create-collection.html">Create collection</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="./add-photo.html">Add photo</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="./login.html" onclick="logout()">Logout</a>
-								</li>
-							</ul>
-						</div>
+			<nav>
+				<div class="navbar" id="navbarNav">
+					<div id="not-logged-buttons">
+						<ul class="nav-ul">
+							<li class="nav-item">
+								<a class="nav-link" href="./login.html">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./register.html">Register</a>
+							</li>
+						</ul>
+					</div>
+					<div id="logged-buttons">
+						<ul class="nav-ul">
+							<li class="nav-item">
+								<a class="nav-link hello-a"><span>Hello, <span id="hello-user"></span></span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./create-collection.html">Create collection</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./add-photo.html">Add photo</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./login.html" onclick="logout()">Logout</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</nav>
@@ -60,25 +53,25 @@
 
 		<main class="container-fluid">
 			<form id="registration-form" class="form needs-validation" method="post" novalidate>
-				<div class="form-group col-md-2 mb-3">
+				<div class="input-container">
 					<label for="username" class="form-label">Username:</label>
 					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" maxlength="10" required
 						   oninvalid="this.setCustomValidity(' ')">
 					<div class="invalid-feedback"></div>
 				</div>
-				<div class="form-group col-md-2 mb-3">
+				<div class="input-container">
 					<label for="email" class="form-label">Email:</label>
 					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required
 						   oninvalid="this.setCustomValidity(' ')">
 					<div class="invalid-feedback"></div>
 				</div>
-				<div class="form-group col-md-2 mb-3">
+				<div class="input-container">
 					<label for="password" class="form-label">Password:</label>
 					<input type="password" class="form-control" id="password" placeholder="Enter password" maxlength="10" name="password" required
 						   oninvalid="this.setCustomValidity(' ')">
 					<div class="invalid-feedback"></div>
 				</div>
-				<div class="form-group col-md-2 mb-3">
+				<div class="input-container">
 					<label for="confirm-password" class="form-label">Confirm password:</label>
 					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" maxlength="10" name="confirm-password" required
 						   oninvalid="this.setCustomValidity(' ')">

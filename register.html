@@ -15,9 +15,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
-		<script src="./scripts/registration.js"></script>
 		<!--		JS files imports-->
-		<script src="./scripts/login.js"></script>
+		<script src="./scripts/registration.js"></script>
 	</head>
 	<body>
 		<header>
@@ -63,31 +62,28 @@
 			<form id="registration-form" class="form needs-validation" method="post" novalidate>
 				<div class="form-group col-md-2 mb-3">
 					<label for="username" class="form-label">Username:</label>
-					<input type="text" class="form-control" id="username" placeholder="Enter username" required name="username">
-					<div class="invalid-feedback">
-						Please enter your username.
-					</div>
+					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" maxlength="10" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="form-group col-md-2 mb-3">
 					<label for="email" class="form-label">Email:</label>
-					<input type="email" class="form-control" id="email" placeholder="Enter email" required name="email">
-					<div class="invalid-feedback">
-						Please enter your email address.
-					</div>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="form-group col-md-2 mb-3">
 					<label for="password" class="form-label">Password:</label>
-					<input type="password" class="form-control" id="password" placeholder="Enter password" required name="password">
-					<div class="invalid-feedback">
-						Please enter your password.
-					</div>
+					<input type="password" class="form-control" id="password" placeholder="Enter password" maxlength="10" name="password" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="form-group col-md-2 mb-3">
 					<label for="confirm-password" class="form-label">Confirm password:</label>
-					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" required>
-					<div class="invalid-feedback">
-						Please confirm your password.
-					</div>
+					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" maxlength="10" name="confirm-password" required
+						   oninvalid="this.setCustomValidity(' ')">
+
+					<div class="invalid-feedback"></div>
 				</div>
 				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)" name="submit">Register</button>
 			</form>

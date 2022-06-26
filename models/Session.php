@@ -18,11 +18,13 @@ class Session
         return $_SESSION;
     }
 
-    public static function logUser(string $username, string $password): bool {
+    public static function logUser(string $username, string $email, string $password): bool {
         $_SESSION['user_id'] = 5;
 //        self::$session_id++;
 
         $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['password'] = $password;
 
         return true;
     }

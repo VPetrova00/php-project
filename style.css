@@ -2,12 +2,39 @@
     font-family: 'Joan', serif;
 }
 
+body {
+    margin: 0;
+}
+
 header, footer {
     text-align: center;
 }
 
-header nav {
-    margin-bottom: 3rem;
+#not-logged-buttons .nav-ul {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(53, 84, 138, 0.94);
+    padding: 1rem 0;
+    margin: 0;
+}
+
+#logged-buttons .nav-ul {
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(53, 84, 138, 0.94);
+    padding: 1rem 0;
+    margin: 0;
+}
+
+#not-logged-buttons .nav-ul .nav-item, #logged-buttons .nav-ul .nav-item {
+    list-style-type: none;
+}
+
+#not-logged-buttons .nav-ul .nav-item a, #logged-buttons .nav-ul .nav-item a {
+    text-decoration: none;
+    color: white;
+    background-color: rgba(53, 84, 138, 0.33);
+    padding: 1rem;
 }
 
 main {
@@ -21,8 +48,8 @@ main:not(.album) {
 }
 
 footer {
-    font-size: 1.6rem;
-    position: fixed;
+    font-size: 1rem;
+    position: sticky;
     /*z-index: 1;*/
     background-color: white;
     left: 0;
@@ -58,11 +85,10 @@ footer {
     padding: 1rem 1rem;
     margin: 2rem 2rem;
     flex: 0 0 20%;
-    border-radius: 2%;
 }
 
-.collections .collection:first-child:hover {
-    background-color: darkgray;
+.collections .collection:hover {
+    background-color: rgba(53, 84, 138, 0.33);
 }
 
 .collection img {
@@ -104,4 +130,27 @@ footer {
     display: flex;
     justify-content: center;
     margin-bottom: 8rem;
+}
+
+button {
+    background-color: rgba(53, 84, 138, 0.94);
+    border: 1px solid rgba(53, 84, 138, 0.94);
+    border-radius: 4px;
+    color: white;
+    padding: 0.5rem 2rem;
+    margin: 1rem;
+}
+
+.input-container {
+    margin: 0.8rem;
+    width: 20rem;
+}
+
+.input-container:not(label) {
+    width: 10rem;
+}
+
+label {
+    color: rgba(53, 84, 138, 0.94);
+    font-weight: bold;
 }

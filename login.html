@@ -54,13 +54,15 @@
 			<form class="form needs-validation" method="post" novalidate>
 				<div class="input-container">
 					<label for="username" class="form-label">Username:</label>
-					<input type="text" class="form-control" id="username" placeholder="Enter username" required>
+					<input type="text" class="form-control" id="username" name="username" maxlength="10" placeholder="Enter username" required>
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="input-container">
 					<label for="password" class="form-label">Password:</label>
-					<input type="password" class="form-control" id="password" placeholder="Enter password" required>
+					<input type="password" class="form-control" id="password" name="password" maxlength="10" placeholder="Enter password" required>
+					<div class="invalid-feedback"></div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="submit-button" onclick="loginMethods.submitForm()">Login</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="submit-button" onclick="loginMethods.submitForm(event)">Login</button>
 			</form>
 	    </main>
 

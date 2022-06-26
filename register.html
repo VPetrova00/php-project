@@ -3,16 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Register page</title>
-
+    
 		<!--	google fonts-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
-		<script src="./scripts/registration.js"></script>
 		<!--		JS files imports-->
-		<script src="./scripts/login.js"></script>
+		<script src="./scripts/registration.js"></script>
 	</head>
 	<body>
 		<header>
@@ -56,21 +55,30 @@
 			<form id="registration-form" class="form needs-validation" method="post" novalidate>
 				<div class="input-container">
 					<label for="username" class="form-label">Username:</label>
-					<input type="text" class="form-control" id="username" placeholder="Enter username" required>
+					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" maxlength="10" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="input-container">
 					<label for="email" class="form-label">Email:</label>
-					<input type="email" class="form-control" id="email" placeholder="Enter email" required>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="input-container">
 					<label for="password" class="form-label">Password:</label>
-					<input type="password" class="form-control" id="password" placeholder="Enter password" required>
+					<input type="password" class="form-control" id="password" placeholder="Enter password" maxlength="10" name="password" required
+						   oninvalid="this.setCustomValidity(' ')">
+					<div class="invalid-feedback"></div>
 				</div>
 				<div class="input-container">
 					<label for="confirm-password" class="form-label">Confirm password:</label>
-					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" required>
+					<input type="password" class="form-control" id="confirm-password" placeholder="Enter confirm password" maxlength="10" name="confirm-password" required
+						   oninvalid="this.setCustomValidity(' ')">
+
+					<div class="invalid-feedback"></div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)">Register</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="register" onclick="submitForm(event)" name="submit">Register</button>
 			</form>
 		</main>
 
@@ -88,43 +96,5 @@
 			</script>
 			</p>
 		</footer>
-
-		<script>
-		    // document.getElementById('submit-button').on('click', function (e) {
-		    //     e.preventDefault();
-		    //
-		    //     if (document.getElementById('username').val() === '') {
-            //         document.getElementById('username');
-		    //     }
-		    //
-            //     if ($('#email').val() === '') {
-            //         $('#email + .invalid-feedback').show();
-            //     }
-		    //
-            //     if ($('#confirm-password').val() === '') {
-            //         $('#confirm-password + .invalid-feedback').show();
-            //     }
-		    //
-		    //     if ($('#password').val() === '') {
-		    //         $('#password + .invalid-feedback').show();
-		    //     }
-		    // });
-		    //
-		    // $('#username').on('click', function () {
-		    //     $('#username + .invalid-feedback').hide();
-		    // });
-		    //
-            // $('#email').on('click', function () {
-            //     $('#email + .invalid-feedback').hide();
-            // });
-		    //
-            // $('#confirm-password').on('click', function () {
-            //     $('#confirm-password + .invalid-feedback').hide();
-            // });
-		    //
-		    // $('#password').on('click', function () {
-		    //     $('#password + .invalid-feedback').hide();
-		    // });
-		</script>
 	</body>
 </html>

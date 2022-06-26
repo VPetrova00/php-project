@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
 CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `username` varchar(10) NOT NULL,
+    `email` text NOT NULL,
     `password` varchar(10) NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `username` (`username`)

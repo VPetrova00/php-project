@@ -11,7 +11,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $userInformation = Session::verifyUserIsLoggedIn();
             $result = [
                 'logged' => true,
-                'session' => $userInformation
+                'session' => $userInformation,
             ];
         } catch (AccessDeniedException $e) {
             $result = ['logged' => false];
@@ -23,9 +23,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST': {
         $requestBody = json_decode(file_get_contents("php://input"), true);
         $username = $requestBody['username'];
+        $email = $requestBody['email'];
         $password = $requestBody['password'];
 
-        echo json_encode(["success" => Session::logUser($username, $password)]);
+        echo json_encode(["success" => Session::logUser($username, $email, $password), "username" => $username, "email" => $email, "password" => $password]);
 
         break;
     }

@@ -1,7 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('addedSuccess').style.display = "none";
     document.getElementById('image').nextElementSibling.style.display = "none";
+
+    const url = window.location.href;
+    const pathArray = url.split('=');
+    const userId = pathArray[1];
+
+    fetch('./endpoints/collection.php?id=' + userId, {
+        method: "GET"
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("GET request failed");
+        }
+    }).then(result => {
+        if (result.success) {
+            console.log(result);
+            showDropdown(result[0]);
+        } else {
+            //TODO: display error message in the html page
+            console.log("No collections in the database.")
+        }
+    }).catch(() => {
+        //TODO: display error message in the html page
+        console.log("Something failed when trying to get collections!");
+    })
 })
+
+const showDropdown = (collections) => {
+    const dropdown = document.getElementById('dropdown');
+
+    if (collections.length > 0) {
+        collections.forEach(collection => {
+            const collectionOption = document.createElement('option');
+            collectionOption.setAttribute('value', collection.name);
+            collectionOption.innerHTML = collection.name;
+            dropdown.appendChild(collectionOption);
+        })
+    } else {
+        const message = document.createElement('option');
+        message.innerHTML = "There are currently no created collections";
+        dropdown.appendChild(message);
+    }
+}
 
 const submitPhoto = (event) => {
     event.preventDefault();

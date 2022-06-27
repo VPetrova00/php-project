@@ -14,38 +14,39 @@ $conn = new PDO("mysql:host=$dbhost;dbname=$dbName", $name, $password,
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
         try {
-            $sql = "SELECT * FROM collection";
+
+            $sql = "SELECT * FROM users";
 
             $result = $conn->query($sql);
 
-            $resultCollections = array();
+            $resultUsers = array();
 
             while($row = $result->fetch(PDO::FETCH_ASSOC)){ // loop to store the data in an associative array.
-                $resultCollections[] = $row;
+                $resultUsers[] = $row;
             }
 
         } catch (AccessDeniedException $e) {
-            $resultCollections = ['success' => false];
+            $resultUsers = ['success' => false];
         }
 
-        echo json_encode(['success' => true, $resultCollections]);
+        echo json_encode(['success' => true, $resultUsers]);
         break;
-        }
+    }
 
     case 'POST': {
         $requestBody = json_decode(file_get_contents("php://input"), true);
-        $name =  $requestBody['name'];
-        $creationDate = $requestBody['creationDate'];
-        $description = $requestBody['description'];
-        $userId = $requestBody['userId'];
+        $username =  $requestBody['username'];
+        $email = $requestBody['email'];
+        $password = $requestBody['password'];
 
-        $sql = "INSERT INTO collection VALUES ('', '$name', '$creationDate', '$description', '$userId')";
+        $sql = "INSERT INTO users VALUES ('', '$username', '$email', '$password')";
 
         if($conn->query($sql)){
             echo json_encode(['success' => true]);
         } else{
             echo json_encode(['success' => false]);
         }
+
     }
 
 }

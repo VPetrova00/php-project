@@ -11,7 +11,7 @@
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
 		<!--		JS files imports-->
-		<script src="./scripts/login.js"></script>
+		<script src="./scripts/photo.js"></script>
 	</head>
 	<body>
 		<header>
@@ -55,16 +55,18 @@
 			<form class="form needs-validation" method="post" novalidate>
 				<div class="input-container">
 					<label for="image" class="form-label">File:</label>
-					<input type="file" class="form-control" id="image" placeholder="Choose file" required>
+					<input type="file" class="form-control" id="image" placeholder="Choose file" accept="image/png, image/gif, image/jpeg" required>
+					<div class="invalid-feedback">Please select an image.</div>
 				</div>
 				<div class="input-container">
 					<label for="dropdown" class="form-label">Collection:</label>
 					<select name="collections" id="dropdown">
 						<option value="Example Collection">Example Collection</option>
-						<option value="Example Collection">Example Collection 2</option>
+						<option value="Example Collection 2">Example Collection 2</option>
 					</select>
 				</div>
-				<button type="submit" class="form-button" id="submit-button">Add</button>
+				<button type="submit" class="form-button" id="submit-button" onclick="submitPhoto(event)">Add</button>
+				<p class="success" id="addedSuccess">Picture is added successfully.</p>
 			</form>
 		</main>
 

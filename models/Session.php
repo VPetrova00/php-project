@@ -23,6 +23,7 @@ class Session
 //        self::$session_id++;
 
         $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
 
         return true;
     }

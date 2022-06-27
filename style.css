@@ -74,6 +74,11 @@ footer {
     color: red;
 }
 
+.success {
+    margin-top: 0.5rem;
+    color: green;
+}
+
 .collections {
     display: flex;
     flex-direction: row;

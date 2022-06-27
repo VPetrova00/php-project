@@ -11,7 +11,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $userInformation = Session::verifyUserIsLoggedIn();
             $result = [
                 'logged' => true,
-                'session' => $userInformation
+                'session' => $userInformation,
             ];
         } catch (AccessDeniedException $e) {
             $result = ['logged' => false];
@@ -25,7 +25,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $username = $requestBody['username'];
         $password = $requestBody['password'];
 
-        echo json_encode(["success" => Session::logUser($username, $password)]);
+        echo json_encode(["success" => Session::logUser($username, $password), "username" => $username, "password" => $password]);
 
         break;
     }

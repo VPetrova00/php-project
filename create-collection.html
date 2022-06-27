@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="style.css">
 		<!--		JS files imports-->
 		<script src="./scripts/login.js"></script>
+		<script src="./scripts/collections.js"></script>
 	</head>
 	<body>
 		<header>
@@ -59,14 +60,15 @@
 				</div>
 				<div class="input-container">
 					<label for="description" class="form-label">Description:</label>
-					<textarea class="form-control" id="description" placeholder="Enter description" rows="5">
-					</textarea>
+					<textarea class="form-control" id="description" placeholder="Enter description" rows="5"></textarea>
 				</div>
 				<div class="input-container">
 					<label for="cover-photo" class="form-label">Cover photo:</label>
 					<input type="file" class="form-control" id="cover-photo" placeholder="Choose cover photo" required>
+					<div class="invalid-feedback">Please select an image.</div>
 				</div>
-				<button type="submit" class="btn btn-primary col-md-1" id="submit-button">Create collection</button>
+				<button type="submit" class="btn btn-primary col-md-1" id="submit-button" onclick="submitCollection(event)">Create collection</button>
+				<p class="success" id="addedSuccess">Collection is created successfully.</p>
 			</form>
 		</main>
 

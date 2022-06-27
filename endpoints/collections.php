@@ -37,9 +37,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $name =  $requestBody['name'];
         $creationDate = $requestBody['creationDate'];
         $description = $requestBody['description'];
+        $coverPhoto = $requestBody['coverPhoto'];
         $userId = $requestBody['userId'];
 
-        $sql = "INSERT INTO collection VALUES ('', '$name', '$creationDate', '$description', '$userId')";
+        $sql = "INSERT INTO collection VALUES ('', '$name', '$creationDate', '$description', '$coverPhoto', '$userId')";
 
         if($conn->query($sql)){
             echo json_encode(['success' => true]);

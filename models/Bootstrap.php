@@ -15,6 +15,7 @@ class Bootstrap {
             $paths = [
                 "../models",
                 "../exceptions",
+                "../endpointsHandlers"
             ];
 
             foreach ($paths as $path) {
@@ -29,7 +30,7 @@ class Bootstrap {
     private static function initExceptionHandler(): void {
 
         set_exception_handler(function ($exception) {
-
+            var_dump($exception);
             if ($exception instanceof PDOException) {
                 http_response_code(500);
                 error_log($exception->getMessage());
@@ -43,7 +44,7 @@ class Bootstrap {
             } else {
                 http_response_code(500);
                 error_log($exception->getMessage());
-                $response = ['error' => 'Unknown error occured.'];
+                $response = ['error' => 'Unknown error occurred.'];
             }
 
             echo json_encode($response, JSON_UNESCAPED_UNICODE);

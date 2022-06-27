@@ -1,14 +1,13 @@
 const redirectToMainPage = (userId) => {
-    window.location.replace("login.html");
+    window.location.replace("index.html?user_id=" + userId);
 }
 
 function submitForm(event) {
     event.preventDefault();
-
     validate();
 }
 
-function validate() {
+function validate(result) {
     //create boolean array for all properties in the register form
     let areAllSuccessful = [false, false, false, false];
 
@@ -78,7 +77,7 @@ function validate() {
             // check if the username already exists in the database
             areAllSuccessful = checkForExistingUser(username, users, areAllSuccessful);
             //check if all properties are successful
-            checkSuccessRegistrationForm(areAllSuccessful, properties);
+            checkSuccess(areAllSuccessful, properties);
         } else {
             //TODO: display error message in the html page
             console.log("No users in the database.");
@@ -99,7 +98,7 @@ function checkForExistingUser(property, users, areAllSuccessful) {
     return areAllSuccessful;
 }
 
-function checkSuccessRegistrationForm(areAllSuccessful, properties) {
+function checkSuccess(areAllSuccessful, properties) {
     const body = {
         'username': properties[0].value,
         'email': properties[1].value,

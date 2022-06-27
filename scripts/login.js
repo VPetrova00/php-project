@@ -10,7 +10,10 @@ const loginMethods = {
     },
     submitForm: (event) => {
         event.preventDefault();
-        let isSuccess;
+        let successfulUser = {
+            isSuccess: true,
+            userId: 0,
+        };
         const username = document.getElementById("username");
         const password = document.getElementById("password");
 
@@ -22,12 +25,12 @@ const loginMethods = {
         if ( username.value === '' ) {
             username.nextElementSibling.innerHTML = "Please enter a username.";
             username.nextElementSibling.style.display = "block";
-            isSuccess = false;
+            successfulUser.isSuccess = false;
         }
         if (password.value === '') {
             password.nextElementSibling.innerHTML = "Please enter a password.";
             password.nextElementSibling.style.display = "block";
-            isSuccess = false;
+            successfulUser.isSuccess = false;
         }
 
         //check if this user exists
@@ -41,10 +44,10 @@ const loginMethods = {
             }
         }).then(result => {
             if (result.success) {
-                //check if a user with these username and password exist
-                isSuccess = validateUser(result, username, password);
+                //check if a user with these usernames and password exist
+                successfulUser = validateUser(result, username, password);
                 //check if validation is true
-                checkSuccess(isSuccess, username, password);
+                checkSuccess(successfulUser, username, password);
             } else {
                 //TODO: display error message in the html page
                 console.log("No users in the database.");
@@ -80,28 +83,40 @@ const validateUser = (users, username, password) => {
     if (users[0].some(u => u.username == username.value)) {
         const index = users[0].findIndex(u => u.username == username.value);
         if (users[0][index].password == password.value) {
-            return true;
+            return {
+                isSuccess: true,
+                userId: users[0][index].id
+            };
         } else {
             password.nextElementSibling.innerHTML = "Incorrect password!";
             password.nextElementSibling.style.display = "block";
-            return false;
+            return {
+                isSuccess: false,
+                userId: undefined
+            };
         }
     } else {
         username.nextElementSibling.innerHTML = "User with this username doesn't exist.";
         username.nextElementSibling.style.display = "block";
-        return false;
+        return {
+            isSuccess: false,
+            userId: undefined
+        };
     }
 }
 
-const checkSuccess = (isSuccess, username, password) => {
+const checkSuccess = (successfulUser, username, password, user) => {
+
     const body = {
         'username': username.value,
         'password': password.value
     };
     //if everything is successful redirect to main page
-    if (isSuccess) {
+    if (successfulUser.isSuccess) {
         username.nextElementSibling.style.display = "none";
         password.nextElementSibling.style.display = "none";
+
+        const userId = successfulUser.userId;
 
         fetch('./endpoints/session.php', {
             method: "POST",
@@ -114,7 +129,7 @@ const checkSuccess = (isSuccess, username, password) => {
             }
         }).then(result => {
             if (result.success) {
-                document.location.replace('http://localhost:80/php-project/index.html');
+                document.location.replace('http://localhost:80/php-project/index.html?user_id=' + userId);
             } else {
                 //TODO: display error message in the html page
                 console.log("There isn't an user with that password!");

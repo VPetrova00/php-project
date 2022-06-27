@@ -42,7 +42,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $sql = "INSERT INTO users VALUES ('', '$username', '$email', '$password')";
 
         if($conn->query($sql)){
-            echo json_encode(['success' => true]);
+            $user = $conn->query("SELECT * FROM users WHERE username = '$username'")->fetch(PDO::FETCH_ASSOC);
+            echo json_encode(['success' => true, 'id' => $user['id']]);
         } else{
             echo json_encode(['success' => false]);
         }

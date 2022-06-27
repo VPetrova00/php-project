@@ -6,8 +6,10 @@ USE `project`;
 
 CREATE TABLE IF NOT EXISTS `collection` (
     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(100) NOT NULL,
     `creation_date` date NOT NULL,
     `description` text NOT NULL,
+    `cover_photo` text NOT NULL,
     `user_id` int(10) UNSIGNED NOT NULL,
     PRIMARY KEY (`id`),
     KEY `fk_user` (`user_id`)

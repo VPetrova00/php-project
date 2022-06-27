@@ -14,32 +14,36 @@ $conn = new PDO("mysql:host=$dbhost;dbname=$dbName", $name, $password,
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
         try {
-            $sql = "SELECT * FROM collection";
 
-            $result = $conn->query($sql);
+        $sql = "SELECT * FROM picture";
 
-            $resultCollections = array();
+        $result = $conn->query($sql);
 
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){ // loop to store the data in an associative array.
-                $resultCollections[] = $row;
-            }
+        $resultPictures = array();
 
-        } catch (AccessDeniedException $e) {
-            $resultCollections = ['success' => false];
+        while($row = $result->fetch(PDO::FETCH_ASSOC)){ // loop to store the data in an associative array.
+            $resultPictures[] = $row;
         }
 
-        echo json_encode(['success' => true, $resultCollections]);
+    } catch (AccessDeniedException $e) {
+            $resultPictures = ['success' => false];
+    }
+
+        echo json_encode(['success' => true, $resultPictures]);
         break;
-        }
+
+    }
 
     case 'POST': {
+
         $requestBody = json_decode(file_get_contents("php://input"), true);
         $name =  $requestBody['name'];
-        $creationDate = $requestBody['creationDate'];
-        $description = $requestBody['description'];
-        $userId = $requestBody['userId'];
+        $date = $requestBody['date'];
+        $width = $requestBody['width'];
+        $height = $requestBody['height'];
+        $collectionId = $requestBody['collectionId'];
 
-        $sql = "INSERT INTO collection VALUES ('', '$name', '$creationDate', '$description', '$userId')";
+        $sql = "INSERT INTO picture VALUES ('', '$name', '$date', '$width', '$height', '$collectionId')";
 
         if($conn->query($sql)){
             echo json_encode(['success' => true]);

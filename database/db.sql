@@ -23,10 +23,10 @@ INSERT INTO `collection` (`id`, `creation_date`, `description`, `user_id`) VALUE
 
 CREATE TABLE IF NOT EXISTS `picture` (
     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` text NOT NULL,
     `date` date NOT NULL,
     `width` int(10) UNSIGNED NOT NULL,
     `height` int(10) UNSIGNED NOT NULL,
-    `path` varchar(100) NOT NULL,
     `collection_id` int(10) UNSIGNED NOT NULL,
     PRIMARY KEY (`id`),
     KEY `fk_collection` (`collection_id`)

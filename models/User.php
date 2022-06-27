@@ -6,12 +6,15 @@ class User implements JsonSerializable
 
     private $username;
 
+    private $email;
+
     private $password;
 
 
-    public function __construct(int $id, string $username, string $password) {
+    public function __construct(int $id, string $username, string $email, string $password) {
         $this->id = $id;
         $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
     }
 
@@ -21,6 +24,10 @@ class User implements JsonSerializable
 
     public function getUsername(): string {
         return $this->username;
+    }
+
+    public function getEmail(): string {
+        return $this->email;
     }
 
     public function getPassword(): string {
@@ -33,6 +40,6 @@ class User implements JsonSerializable
     }
 
     public static function createFromAssoc(array $assocUser): User {
-        return new User($assocUser['id'], $assocUser['username'], $assocUser['password']);
+        return new User($assocUser['id'], $assocUser['username'], $assocUser['email'], $assocUser['password']);
     }
 }

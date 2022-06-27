@@ -1,43 +1,14 @@
 const redirectToMainPage = (userId) => {
-    window.location.replace("index.html?user_id=" + userId);
+    window.location.replace("login.html");
 }
 
 function submitForm(event) {
     event.preventDefault();
 
-    const body = {
-        'username': document.getElementById('username').value,
-        'email': document.getElementById('email').value,
-        'password': document.getElementById('password').value,
-        'confirm-password': document.getElementById('confirm-password').value
-    };
-
-    const promise = fetch('./endpoints/session.php', {
-        method: "POST",
-        body: JSON.stringify(body)
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("POST request failed!");
-        }
-    }).then(result => {
-        if (result.success) {
-            console.log(result);
-            validate(result);
-        } else {
-            //TODO: display error message in the html page
-            console.log("This username is already taken.");
-        }
-    }).catch(() => {
-        //TODO: display error message in the html page
-        console.log("Something failed when trying to register!");
-    });
-
-    return promise;
+    validate();
 }
 
-function validate(result) {
+function validate() {
     //create boolean array for all properties in the register form
     let areAllSuccessful = [false, false, false, false];
 
@@ -107,7 +78,7 @@ function validate(result) {
             // check if the username already exists in the database
             areAllSuccessful = checkForExistingUser(username, users, areAllSuccessful);
             //check if all properties are successful
-            checkSuccess(areAllSuccessful, properties);
+            checkSuccessRegistrationForm(areAllSuccessful, properties);
         } else {
             //TODO: display error message in the html page
             console.log("No users in the database.");
@@ -128,7 +99,7 @@ function checkForExistingUser(property, users, areAllSuccessful) {
     return areAllSuccessful;
 }
 
-function checkSuccess(areAllSuccessful, properties) {
+function checkSuccessRegistrationForm(areAllSuccessful, properties) {
     const body = {
         'username': properties[0].value,
         'email': properties[1].value,

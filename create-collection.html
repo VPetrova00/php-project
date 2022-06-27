@@ -11,7 +11,7 @@
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
 		<!--		JS files imports-->
-		<script src="./scripts/login.js"></script>
+
 		<script src="./scripts/create-collection.js"></script>
 	</head>
 	<body>
@@ -34,13 +34,13 @@
 								<a class="nav-link hello-a"><span>Hello, <span id="hello-user"></span></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./index.html">Home</a>
+								<a id="home" class="nav-link" href="./index.html">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./create-collection.html">Create collection</a>
+								<a id="create-collection" class="nav-link" href="./create-collection.html">Create collection</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./add-photo.html">Add photo</a>
+								<a id="add-photo" class="nav-link" href="./add-photo.html">Add photo</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="./login.html" onclick="logout()">Logout</a>
@@ -87,26 +87,6 @@
 			</p>
 		</footer>
 
-		<script>
-		    // $('#submit-button').on('click', function (e) {
-		    //     e.preventDefault();
-		    //
-            //     if ($('#collection-name').val() === '') {
-            //         $('#collection-name + .invalid-feedback').show();
-            //     }
-		    //
-            //     if ($('#cover-photo').val() === '') {
-            //         $('#cover-photo + .invalid-feedback').show();
-            //     }
-		    // });
-		    //
-		    // $('#collection-name').on('click', function () {
-		    //     $('#collection-name + .invalid-feedback').hide();
-		    // });
-		    //
-		    // $('#cover-photo').on('click', function () {
-		    //     $('#cover-photo + .invalid-feedback').hide();
-		    // });
-		</script>
+		<script src="./scripts/login.js"></script>
 	</body>
 </html>

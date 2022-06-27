@@ -4,37 +4,7 @@ const redirectToMainPage = (userId) => {
 
 function submitForm(event) {
     event.preventDefault();
-
-    const body = {
-        'username': document.getElementById('username').value,
-        'email': document.getElementById('email').value,
-        'password': document.getElementById('password').value,
-        'confirm-password': document.getElementById('confirm-password').value
-    };
-
-    const promise = fetch('./endpoints/session.php', {
-        method: "POST",
-        body: JSON.stringify(body)
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("POST request failed!");
-        }
-    }).then(result => {
-        if (result.success) {
-            console.log(result);
-            validate(result);
-        } else {
-            //TODO: display error message in the html page
-            console.log("This username is already taken.");
-        }
-    }).catch(() => {
-        //TODO: display error message in the html page
-        console.log("Something failed when trying to register!");
-    });
-
-    return promise;
+    validate();
 }
 
 function validate(result) {

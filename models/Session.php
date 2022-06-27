@@ -3,8 +3,6 @@
 class Session
 {
 
-    private static $session_id = 0;
-
     /**
      * @throws AccessDeniedException
      */
@@ -19,8 +17,13 @@ class Session
     }
 
     public static function logUser(string $username, string $password): bool {
-        $_SESSION['user_id'] = 5;
-//        self::$session_id++;
+        $sqlQuery = "SELECT * FROM `users` WHERE username = :username and password = :password";
+        $selectStatement = (new Db())->getConnection()->prepare($sqlQuery);
+        $selectStatement->execute(['username' => $username, 'password' => $password]);
+
+        $user = $selectStatement->fetch();
+
+        $_SESSION['user_id'] = $user['id'];
 
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;

@@ -1,3 +1,7 @@
+// document.addEventListener("DOMContentLoaded", () => {
+//     loginMethods.checkLoginStatus();
+// })
+
 const loginMethods = {
     checkLoginStatus: () => {
         return fetch('./endpoints/session.php').then(response => {
@@ -72,6 +76,10 @@ loginMethods.checkLoginStatus()
         if (loginStatus.logged) {
             document.getElementById('not-logged-buttons').setAttribute('style', "display: none");
             document.getElementById('logged-buttons').setAttribute('style', "display: block");
+            console.log(loginStatus.session.user_id);
+            document.getElementById('home').setAttribute('href', "./index.html?user_id=" + loginStatus.session.user_id);
+            document.getElementById('create-collection').setAttribute('href', "./create-collection.html?user_id=" + loginStatus.session.user_id);
+            document.getElementById('add-photo').setAttribute('href', "./add-photo.html?user_id=" + loginStatus.session.user_id);
             document.getElementById('hello-user').innerText = loginStatus.session.username;
         } else {
             document.getElementById('not-logged-buttons').setAttribute('style', "display: block");
@@ -105,7 +113,7 @@ const validateUser = (users, username, password) => {
     }
 }
 
-const checkSuccess = (successfulUser, username, password, user) => {
+const checkSuccess = (successfulUser, username, password) => {
 
     const body = {
         'username': username.value,

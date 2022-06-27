@@ -11,7 +11,7 @@
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
 		<!--		JS files imports-->
-		<script src="./scripts/login.js"></script>
+
 	</head>
 	<body>
 		<header>
@@ -33,13 +33,13 @@
 								<a class="nav-link hello-a"><span>Hello, <span id="hello-user"></span></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./index.html">Home</a>
+								<a id="home" class="nav-link" href="./index.html">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./create-collection.html">Create collection</a>
+								<a id="create-collection" class="nav-link" href="./create-collection.html">Create collection</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="./add-photo.html">Add photo</a>
+								<a id="add-photo" class="nav-link" href="./add-photo.html">Add photo</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="./login.html" onclick="logout()">Logout</a>
@@ -111,5 +111,6 @@
                 a.print();
             }
 		</script>
+		<script src="./scripts/login.js"></script>
 	</body>
 </html>

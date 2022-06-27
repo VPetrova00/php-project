@@ -33,6 +33,7 @@ const displayCollections = (collections) => {
     if (collections.length > 0) {
         collections.forEach(collection => {
             const collectionNode = document.createElement('div');
+            //use redirect method instead og displayPictures()
             const collectionHTMLContent = `
 <div class="collection" id="${collection.id}" onclick="imagesMethods.displayPictures()">
     <img class="rounded img-fluid" src="./images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="image-example">

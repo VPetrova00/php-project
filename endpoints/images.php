@@ -7,7 +7,7 @@ Bootstrap::initApp();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
-        $selectedCollectionId = isset($_GET['id']) ? $_GET['id'] : null; //undefined index -> returns null
+        $selectedCollectionId = isset($_GET['id']) ? $_GET['id'] : null;
         $response = null;
 
         if ($selectedCollectionId) {

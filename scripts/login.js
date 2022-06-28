@@ -1,7 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//     loginMethods.checkLoginStatus();
-// })
-
 const loginMethods = {
     checkLoginStatus: () => {
         return fetch('./endpoints/session.php').then(response => {

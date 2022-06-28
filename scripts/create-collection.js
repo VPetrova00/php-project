@@ -1,6 +1,13 @@
+var userId;
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('addedSuccess').style.display = "none";
     document.getElementById('cover-photo').nextElementSibling.style.display = "none";
+
+    const url = window.location.href;
+    const pathArray = url.split('=');
+    userId = pathArray[1];
+
 });
 
 const submitCollection = (event) => {
@@ -32,8 +39,6 @@ const submitCollection = (event) => {
                 padTo2Digits(date.getDate()),
             ].join('-');
 
-            //TODO: to be real id
-            let userId = 1;
 
             const body = {
                 'name': uploadedCollectionName.value,

@@ -1,26 +1,18 @@
 <?php
-$dbhost = 'localhost' ;
-$name = 'root';
-$password = '';
-$dbName = 'project';
 
-$conn = new PDO("mysql:host=$dbhost;dbname=$dbName", $name, $password,
-    [
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+require_once '../models/Bootstrap.php';
+Bootstrap::initApp();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
         try {
             $sql = "SELECT * FROM collection";
 
-            $result = $conn->query($sql);
+            $result = (new Db())->getConnection()->prepare($sql);
+            $result->execute();
+            $resultCollections = [];
 
-            $resultCollections = array();
-
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){ // loop to store the data in an associative array.
+            foreach($result->fetchAll() as $row){ // loop to store the data in an associative array.
                 $resultCollections[] = $row;
             }
 
@@ -42,7 +34,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $sql = "INSERT INTO collection VALUES ('', '$name', '$creationDate', '$description', '$coverPhoto', '$userId')";
 
-        if($conn->query($sql)){
+        if((new Db())->getConnection()->prepare($sql)->execute()){
             echo json_encode(['success' => true]);
         } else{
             echo json_encode(['success' => false]);

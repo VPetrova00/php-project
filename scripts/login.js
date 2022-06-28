@@ -63,7 +63,7 @@ const logout = () => {
     fetch('./endpoints/session.php', {
         method: 'DELETE'
     }).then(() => {
-        document.location.replace('http://localhost:80/php-project/login.html');
+        document.location.replace('login.html');
     });
 };
 
@@ -132,7 +132,7 @@ const checkLoginSuccess = (successfulUser, username, password) => {
             }
         }).then(result => {
             if (result.success) {
-                document.location.replace('http://localhost:80/php-project/index.html?user_id=' + userId);
+                document.location.replace('index.html?user_id=' + userId);
             } else {
                 //TODO: display error message in the html page
                 console.log("There isn't an user with that password!");

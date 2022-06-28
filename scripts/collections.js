@@ -56,5 +56,5 @@ const displayCollections = (collections) => {
 
 move = (event) => {
     const id = event.path[1].id;
-    window.location = 'http://localhost:80/php-project/display-pictures.html?collectionId=' + id;
+    window.location = 'display-pictures.html?collectionId=' + id;
 };

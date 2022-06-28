@@ -15,14 +15,6 @@ CREATE TABLE IF NOT EXISTS `collection` (
     KEY `fk_user` (`user_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `collection` (`id`, `creation_date`, `description`, `user_id`) VALUES
-                                                                               (5, '2022-06-13', 'A picture of the mountains.', 1),
-                                                                               (6, '2022-06-01', 'A picture of the sea.', 2),
-                                                                               (7, '2022-04-12', 'DisneyLand picture.', 1),
-                                                                               (8, '0000-00-00', 'Birthday picture.', 2),
-                                                                               (9, '2022-04-12', 'DisneyLand picture.', 1),
-                                                                               (10, '2020-07-20', 'Birthday picture.', 2);
-
 CREATE TABLE IF NOT EXISTS `picture` (
     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` text NOT NULL,

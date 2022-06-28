@@ -25,30 +25,36 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 })
 
-
-
 const displayCollections = (collections) => {
     const collectionsDisplay = document.getElementById('collections');
 
     if (collections.length > 0) {
         collections.forEach(collection => {
             const collectionNode = document.createElement('div');
-            //use redirect method instead og displayPictures()
+            collectionNode.setAttribute("class", "collection");
+            collectionNode.setAttribute("id", `${collection.id}`);
+            collectionNode.onclick = move;
             const collectionHTMLContent = `
-<div class="collection" id="${collection.id}" onclick="imagesMethods.displayPictures()">
-    <img class="rounded img-fluid" src="./images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="image-example">
-    <div class="collection-description"></div>
-    <h5>${collection.name}</h5>
-    <p class="small">${collection.description}</p>
-</div>`;
+                        <img src="${localStorage.getItem(collection.cover_photo)}" alt="collection-cover-photo">
+                        <div class="collection-description"></div>
+                        <h5>${collection.name}</h5>
+                        <p>${collection.description}</p>
+            `;
+
             collectionNode.innerHTML += collectionHTMLContent;
             collectionsDisplay.appendChild(collectionNode);
-        })
+            // collectionsDisplay.childNodes.forEach(c => c.addEventListener("click", (event) => {
+            //     move(event);
+            // }));
+        });
     } else {
         const message = document.createElement('div');
         message.innerHTML = "There are currently no created collections";
         collectionsDisplay.appendChild(message);
     }
-
-
 }
+
+move = (event) => {
+    const id = event.path[1].id;
+    window.location = 'http://localhost:80/php-project/display-pictures.html?collectionId=' + id;
+};

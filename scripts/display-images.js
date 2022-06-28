@@ -1,31 +1,35 @@
 let imagesMethods = {
     displayPictures: () => {
-        const hardCodedCollectionId = 1;
+        const params = new URLSearchParams(window.location.search);
+        const collectionId = params.get('collectionId');
 
-        fetch('endpoints/images.php?id=' + hardCodedCollectionId)
+        fetch('endpoints/display-images.php?id=' + collectionId)
             .then(response => response.json())
             .then(imagesMethods.createView);
     },
-    // redirect: ($images) => {
-    //     document.location.replace('http://localhost:80/php-project/display-pictures.html');
-    //
-    //     return $images;
-    // },
     createView: ($images) => {
-        const mainDiv = document.getElementsByClassName('collections')[0];
+        const main = document.getElementById('album');
 
         for (let i = 0; i < $images.length; i++) {
             let section = document.createElement('section');
+            section.setAttribute("class", "album-picture-container-A4");
             let div = document.createElement('div');
-            div.classList.add("frame");
+            div.setAttribute("class", "frame");
             let img = document.createElement('img');
-            img.src = `${$images[i].path}`;
-            img.alt = "example-db-picture";
+            img.src = localStorage.getItem($images[i].name);
+            img.alt = "picture";
 
             div.appendChild(img)
             section.appendChild(div);
 
-            mainDiv.appendChild(section);
+            main.appendChild(section);
+        }
+
+        if ($images.length === 0) {
+            document.getElementById("print-btn").style.display = "none";
+            const message = document.createElement('div');
+            message.innerHTML = "There are currently no images in this collection";
+            main.appendChild(message);
         }
     }
 };

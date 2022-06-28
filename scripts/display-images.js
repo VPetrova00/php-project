@@ -25,11 +25,27 @@ let imagesMethods = {
             main.appendChild(section);
         }
 
-        if ($images.length === 0) {
+        if ($images[0].length === 0) {
             document.getElementById("print-btn").style.display = "none";
+            document.getElementById("sort-btn").style.display = "none";
             const message = document.createElement('div');
             message.innerHTML = "There are currently no images in this collection";
             main.appendChild(message);
         }
+    },
+    sort:() => {
+        const params = new URLSearchParams(window.location.search);
+        const collectionId = params.get('collectionId');
+        const main = document.getElementById('album');
+
+        if (main.hasChildNodes()) {
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+        }
+
+        fetch('endpoints/sort.php?id=' + collectionId)
+            .then(response => response.json())
+            .then(imagesMethods.createView);
     }
 };

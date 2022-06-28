@@ -131,7 +131,7 @@ footer {
     height: 100%;
 }
 
-.print-btn {
+.print-btn, .sort-btn {
     display: flex;
     justify-content: center;
     margin-bottom: 8rem;
@@ -158,4 +158,9 @@ button {
 label {
     color: rgba(53, 84, 138, 0.94);
     font-weight: bold;
+}
+.align {
+    display: flex;
+    text-align: center;
+    justify-content: flex-start;
 }

@@ -3,8 +3,6 @@
 require_once '../models/Bootstrap.php';
 Bootstrap::initApp();
 
-//Session::verifyUserIsLoggedIn();
-
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
         $selectedCollectionId = isset($_GET['id']) ? $_GET['id'] : null;

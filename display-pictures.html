@@ -11,7 +11,7 @@
 		<!--	website styles-->
 		<link rel="stylesheet" href="style.css">
 		<!--		JS files imports-->
-
+		<script src="./scripts/login.js"></script>
 	</head>
 	<body>
 		<header>
@@ -51,40 +51,15 @@
 			<h1>View album from Example Collection photos</h1>
 		</header>
 		<main class="album" id="album">
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
-			<section class="album-picture-container-A4">
-				<div class="frame">
-					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">
-				</div>
-			</section>
+<!--			<section class="album-picture-container-A4" >-->
+<!--				<div class="frame">-->
+<!--					<img src="images/Landscape-Tips-Mike-Mezeul-II.jpg" alt="example-picture">-->
+<!--				</div>-->
+<!--			</section>-->
 		</main>
 
 		<section class="print-btn">
-			<button onclick="print('album')" class="btn btn-primary col-md-1">Print album</button>
+			<button onclick="print('album')" class="btn btn-primary col-md-1" id="print-btn">Print album</button>
 		</section>
 
 		<footer>
@@ -102,7 +77,12 @@
 			</p>
 		</footer>
 
+		<script src="scripts/display-images.js"></script>
 		<script>
+			window.onload = () => {
+                imagesMethods.displayPictures();
+			};
+
             function print(elementName){
                 let contents = document.getElementById(elementName).innerHTML;
                 let a = window.open('', '', 'height=1000, width=1000');
@@ -111,6 +91,5 @@
                 a.print();
             }
 		</script>
-		<script src="./scripts/login.js"></script>
 	</body>
 </html>

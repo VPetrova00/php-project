@@ -25,7 +25,7 @@ let imagesMethods = {
             main.appendChild(section);
         }
 
-        if ($images[0].length === 0) {
+        if ($images.length === 0) {
             document.getElementById("print-btn").style.display = "none";
             document.getElementById("sort-btn").style.display = "none";
             const message = document.createElement('div');

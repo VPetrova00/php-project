@@ -1,15 +1,7 @@
 <?php
-$dbhost = 'localhost' ;
-$name = 'root';
-$password = '';
-$dbName = 'project';
 
-$conn = new PDO("mysql:host=$dbhost;dbname=$dbName", $name, $password,
-    [
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+require_once '../models/Bootstrap.php';
+Bootstrap::initApp();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET': {
@@ -17,11 +9,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $sql = "SELECT * FROM users";
 
-            $result = $conn->query($sql);
+            $result = (new Db())->getConnection()->prepare($sql);
+            $result->execute();
 
-            $resultUsers = array();
+            $resultUsers = [];
 
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){ // loop to store the data in an associative array.
+            foreach ($result->fetchAll() as $row){ // loop to store the data in an associative array.
                 $resultUsers[] = $row;
             }
 
@@ -41,8 +34,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $sql = "INSERT INTO users VALUES ('', '$username', '$email', '$password')";
 
-        if($conn->query($sql)){
-            $user = $conn->query("SELECT * FROM users WHERE username = '$username'")->fetch(PDO::FETCH_ASSOC);
+        if((new Db())->getConnection()->prepare($sql)->execute()){
+            $sql = "SELECT * FROM users WHERE username = :username";
+            $stmt = (new Db())->getConnection()->prepare($sql);
+            $stmt->execute(['username' => $username]);
+            $user = $stmt->fetch();
+
             echo json_encode(['success' => true, 'id' => $user['id']]);
         } else{
             echo json_encode(['success' => false]);

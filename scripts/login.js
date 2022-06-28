@@ -47,7 +47,7 @@ const loginMethods = {
                 //check if a user with these usernames and password exist
                 successfulUser = validateUser(result, username, password);
                 //check if validation is true
-                checkSuccess(successfulUser, username, password);
+                checkLoginSuccess(successfulUser, username, password);
             } else {
                 //TODO: display error message in the html page
                 console.log("No users in the database.");
@@ -108,7 +108,7 @@ const validateUser = (users, username, password) => {
     }
 }
 
-const checkSuccess = (successfulUser, username, password) => {
+const checkLoginSuccess = (successfulUser, username, password) => {
 
     const body = {
         'username': username.value,

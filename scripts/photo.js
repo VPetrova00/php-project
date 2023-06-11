@@ -1,10 +1,12 @@
+if (!sessionStorage.getItem("id")) {
+    document.location.replace("index.html");
+}
+
+const userId = sessionStorage.getItem("id")
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('addedSuccess').style.display = "none";
     document.getElementById('image').nextElementSibling.style.display = "none";
-
-    const url = window.location.href;
-    const pathArray = url.split('=');
-    const userId = pathArray[1];
 
     fetch('./endpoints/collection.php?id=' + userId, {
         method: "GET"
@@ -16,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }).then(result => {
         if (result.success) {
-            console.log(result);
             showDropdown(result[0]);
         } else {
             //TODO: display error message in the html page
@@ -100,7 +101,7 @@ const submitPhoto = (event) => {
 }
 
 const getCollections = (name, body, image) => {
-    fetch('./endpoints/collections.php', {
+    fetch('./endpoints/collection.php?id=' + userId, {
         method: "GET"
     }).then(response => {
         if (response.ok) {
@@ -122,13 +123,11 @@ const getCollections = (name, body, image) => {
 }
 
 const getSelectedCollectionId = (collections, name, body, image) => {
-    console.log(collections);
     if (collections[0].some(c => c.name == name)) {
         const index = collections[0].findIndex(c => c.name == name);
         body['width'] = image.width;
         body['height'] = image.height;
         body['collectionId'] = collections[0][index].id;
-        console.log(body);
         fetch('./endpoints/photo.php', {
             method: "POST",
             body: JSON.stringify(body)
@@ -140,7 +139,7 @@ const getSelectedCollectionId = (collections, name, body, image) => {
             }
         }).then(result => {
             if (result.success) {
-                displaySuccess();
+                returnToHome();
             } else {
                 //TODO: display error message in the html page
                 console.log("Couldn't send data for picture to database");
@@ -157,7 +156,6 @@ const getSelectedCollectionId = (collections, name, body, image) => {
 const padTo2Digits = (num) => {
     return num.toString().padStart(2, '0');
 }
-const displaySuccess = () => {
-    document.getElementById('addedSuccess').style.display = "block";
-    document.getElementById('image').nextElementSibling.style.display = "none";
+const returnToHome = () => {
+    document.location.replace('index.html');
 }

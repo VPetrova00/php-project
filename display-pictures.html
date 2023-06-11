@@ -48,17 +48,13 @@
 					</div>
 				</div>
 			</nav>
-			<h1>View album from Example Collection photos</h1>
+			<h1 id="collection-heading"></h1>
 		</header>
 		<main class="album" id="album">
 		</main>
 		<section class="align">
-			<section class="sort-btn">
-				<button onclick="imagesMethods.sort()" class="btn btn-primary col-md-1" id="sort-btn">Sort by date</button>
-			</section>
-			<section class="print-btn">
-				<button onclick="print('album')" class="btn btn-primary col-md-1" id="print-btn">Print album</button>
-			</section>
+				<button onclick="imagesMethods.sort()" class="btn btn-primary" id="sort-btn">Sort by date</button>
+				<button onclick="print('album')" class="btn btn-primary" id="print-btn">Print album</button>
 		</section>
 
 
@@ -80,7 +76,28 @@
 		<script src="scripts/display-images.js"></script>
 		<script>
 			window.onload = () => {
-                imagesMethods.displayPictures();
+				const userId = sessionStorage.getItem("id");
+				fetch('./endpoints/collection.php?id=' + userId, {
+					method: "GET"
+				}).then(response => {
+					if (response.ok) {
+						return response.json();
+					} else {
+						throw new Error("GET request failed!");
+					}
+				}).then(result => {
+					if (result.success) {
+						imagesMethods.displayHeadingAndPictures(result[0]);
+					} else {
+					//TODO: display error message in the html page
+					console.log("No collections in the database.");
+				}
+				}).catch(() => {
+					//TODO: display error message in the html page
+					console.log("Something failed when trying to get collections!");
+				});
+
+
 			};
 
             function print(elementName){

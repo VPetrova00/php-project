@@ -60,6 +60,7 @@ const loginMethods = {
 }
 
 const logout = () => {
+    sessionStorage.removeItem("id");
     fetch('./endpoints/session.php', {
         method: 'DELETE'
     }).then(() => {
@@ -69,7 +70,7 @@ const logout = () => {
 
 loginMethods.checkLoginStatus()
     .then(loginStatus => {
-        if (loginStatus.logged) {
+        if (loginStatus.logged && sessionStorage.getItem("id")) {
             document.getElementById('not-logged-buttons').setAttribute('style', "display: none");
             document.getElementById('logged-buttons').setAttribute('style', "display: block");
             document.getElementById('home').setAttribute('href', "./index.html?user_id=" + loginStatus.session.user_id);
@@ -132,7 +133,8 @@ const checkLoginSuccess = (successfulUser, username, password) => {
             }
         }).then(result => {
             if (result.success) {
-                document.location.replace('index.html?user_id=' + userId);
+                sessionStorage.setItem('id', userId);
+                document.location.replace('index.html');
             } else {
                 //TODO: display error message in the html page
                 console.log("There isn't an user with that password!");

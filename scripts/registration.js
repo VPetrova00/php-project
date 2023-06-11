@@ -1,5 +1,5 @@
 const redirectToMainPage = (userId) => {
-    window.location.replace("index.html?user_id=" + userId);
+    document.location.replace('index.html?user_id=' + userId);
 }
 
 function submitForm(event) {
@@ -72,7 +72,6 @@ function validate(result) {
         }
     }).then(result => {
         if (result.success) {
-            console.log(result);
             users = result;
             // check if the username already exists in the database
             areAllSuccessful = checkForExistingUser(username, users, areAllSuccessful);

@@ -1,12 +1,14 @@
 var userId;
 
+if (!sessionStorage.getItem("id")) {
+    document.location.replace("index.html");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('addedSuccess').style.display = "none";
+    document.getElementById('errorMessage').style.display = "none";
     document.getElementById('cover-photo').nextElementSibling.style.display = "none";
 
-    const url = window.location.href;
-    const pathArray = url.split('=');
-    userId = pathArray[1];
+    userId = sessionStorage.getItem("id");
 
 });
 
@@ -17,6 +19,44 @@ const submitCollection = (event) => {
     let uploadedCollectionDescription = document.querySelector("#description");
     let uploadedCollectionCoverPhoto = document.querySelector("#cover-photo");
 
+        fetch('./endpoints/collection.php?id=' + userId, {
+            method: "GET"
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("GET request failed!");
+            }
+        }).then(result => {
+            if (result.success) {
+                validate(result, uploadedCollectionName, uploadedCollectionDescription, uploadedCollectionCoverPhoto)
+            }else {
+                //TODO: display error message in the html page
+                console.log("No collections in the database.");
+            }
+        }).catch(() => {
+            //TODO: display error message in the html page
+            console.log("Something failed when trying to get collections!");
+        });
+}
+
+const padTo2Digits = (num) => {
+    return num.toString().padStart(2, '0');
+}
+
+const returnToHome = () => {
+    document.location.replace('index.html');
+}
+
+const validate = (collections, uploadedCollectionName, uploadedCollectionDescription, uploadedCollectionCoverPhoto) => {
+    if (collections[0].some(c => c.name == uploadedCollectionName.value)) {
+        document.getElementById('errorMessage').style.display = "block";
+    } else {
+        continueSubmit(uploadedCollectionName, uploadedCollectionDescription, uploadedCollectionCoverPhoto)
+    }
+}
+
+const continueSubmit = (uploadedCollectionName, uploadedCollectionDescription, uploadedCollectionCoverPhoto) => {
     if (uploadedCollectionCoverPhoto.files.length !== 0) {
         const reader = new FileReader();
         reader.readAsDataURL(uploadedCollectionCoverPhoto.files[0]);
@@ -59,7 +99,7 @@ const submitCollection = (event) => {
                 }
             }).then(result => {
                 if (result.success) {
-                    displaySuccess();
+                    returnToHome();
                 }else {
                     //TODO: display error message in the html page
                     console.log("Cannot add the collection in the DB.");
@@ -72,13 +112,4 @@ const submitCollection = (event) => {
     } else {
         uploadedCollectionCoverPhoto.nextElementSibling.style.display = "block";
     }
-}
-
-const padTo2Digits = (num) => {
-    return num.toString().padStart(2, '0');
-}
-
-const displaySuccess = () => {
-    document.getElementById('addedSuccess').style.display = "block";
-    document.getElementById('cover-photo').nextElementSibling.style.display = "none";
 }
